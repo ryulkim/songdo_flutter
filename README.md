@@ -1,16 +1,10 @@
-# songdo_flutter_ex
+# songdo_flutter
 
-A new Flutter project.
+11/16
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+floatingActionButton 클릭 시, count+1 되면서 Widget 추가</br>
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+실행 화면</br>
+<img src="https://user-images.githubusercontent.com/58160874/141991681-fd370377-f942-4fb7-b7ea-fd80a0327721.png" width="30%" height="30%"/>
