@@ -26,12 +26,27 @@ class _MyState extends State<MyList> {
     });
   }
 
+  void flutterDialog() {
+    showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("Error"),
+        content: const Text("입력 값을 넣어주세요"),
+        actions: <Widget>[
+          TextButton(
+              onPressed: () => Navigator.pop(context), child: const Text("확인")),
+        ],
+      ),
+    );
+  }
+
   Widget _buildInput() {
     return TextFormField(
       controller: _controller,
       decoration: const InputDecoration(hintText: "Input Anything"),
       validator: (String? value) {
         if (value == null || value.isEmpty) {
+          //flutterDialog();
           return "Value is Empty";
         }
       },
@@ -46,36 +61,39 @@ class _MyState extends State<MyList> {
           ),
           body: Column(
             children: [
-              Container(
-                margin: const EdgeInsets.all(24),
-                height: 150,
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      _buildInput(),
-                      SizedBox(height: 10),
-                      ElevatedButton(
-                          onPressed: () => {
-                                if (!_formKey.currentState!.validate())
-                                  {}
-                                else
-                                  {
-                                    add(_controller.text),
-                                    _controller.text = "",
-                                  }
-                              },
-                          child: const Text("submit")),
-                    ],
+              Expanded(
+                flex: 3,
+                child: Container(
+                  margin: const EdgeInsets.all(24),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        _buildInput(),
+                        SizedBox(height: 10),
+                        ElevatedButton(
+                            onPressed: () => {
+                                  if (!_formKey.currentState!.validate())
+                                    {}
+                                  else
+                                    {
+                                      add(_controller.text),
+                                      _controller.text = "",
+                                    }
+                                },
+                            child: const Text("submit")),
+                      ],
+                    ),
                   ),
                 ),
               ),
-              Container(
-                margin: const EdgeInsets.all(24),
-                height: 360,
-                child: _MyListViewWidget(entries.reversed.toList()),
-              )
+              Expanded(
+                  flex: 7,
+                  child: Container(
+                    margin: const EdgeInsets.all(24),
+                    child: _MyListViewWidget(entries.reversed.toList()),
+                  ))
             ],
           ),
           /*floatingActionButton: FloatingActionButton(
