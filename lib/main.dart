@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(MaterialApp(home: MyApp()));
 
 class MyList extends StatefulWidget {
   @override
@@ -46,7 +46,7 @@ class _MyState extends State<MyList> {
       decoration: const InputDecoration(hintText: "Input Anything"),
       validator: (String? value) {
         if (value == null || value.isEmpty) {
-          //flutterDialog();
+          flutterDialog();
           return "Value is Empty";
         }
       },
@@ -54,53 +54,51 @@ class _MyState extends State<MyList> {
   }
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text("Hello Flutter"),
-          ),
-          body: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Container(
-                  margin: const EdgeInsets.all(24),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        _buildInput(),
-                        SizedBox(height: 10),
-                        ElevatedButton(
-                            onPressed: () => {
-                                  if (!_formKey.currentState!.validate())
-                                    {}
-                                  else
-                                    {
-                                      add(_controller.text),
-                                      _controller.text = "",
-                                    }
-                                },
-                            child: const Text("submit")),
-                      ],
-                    ),
+  Widget build(BuildContext context) => Scaffold(
+        appBar: AppBar(
+          title: const Text("Hello Flutter"),
+        ),
+        body: Column(
+          children: [
+            Expanded(
+              flex: 3,
+              child: Container(
+                margin: const EdgeInsets.all(24),
+                child: Form(
+                  key: _formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      _buildInput(),
+                      SizedBox(height: 10),
+                      ElevatedButton(
+                          onPressed: () => {
+                                if (!_formKey.currentState!.validate())
+                                  {}
+                                else
+                                  {
+                                    add(_controller.text),
+                                    _controller.text = "",
+                                  }
+                              },
+                          child: const Text("submit")),
+                    ],
                   ),
                 ),
               ),
-              Expanded(
-                  flex: 7,
-                  child: Container(
-                    margin: const EdgeInsets.all(24),
-                    child: _MyListViewWidget(entries.reversed.toList()),
-                  ))
-            ],
-          ),
-          /*floatingActionButton: FloatingActionButton(
+            ),
+            Expanded(
+                flex: 7,
+                child: Container(
+                  margin: const EdgeInsets.all(24),
+                  child: _MyListViewWidget(entries.reversed.toList()),
+                ))
+          ],
+        ),
+        /*floatingActionButton: FloatingActionButton(
             onPressed: add(_controller.text),
             child: const Icon(Icons.add),
           ),*/
-        ),
       );
 }
 
